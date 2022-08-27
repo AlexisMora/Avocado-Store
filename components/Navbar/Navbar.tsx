@@ -6,13 +6,17 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
 import { Avocado } from '@components/SVGIcons'
+import { useRouter } from 'next/router'
 
 export default function ButtonAppBar() {
+  const router = useRouter()
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Avocado />
+          <Button onClick={()=> router.push('/') } color="inherit">
+            <Avocado />
+          </Button>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Avocado Store
           </Typography>
