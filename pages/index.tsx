@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from "react"
-import Navbar from "../components/Navbar/Navbar"
+import React from "react"
+import ProductList from '@components/ProductList/ProductList'
+import { GetStaticProps } from "next"
 
 
-const Home = () => {
-  const [productList, setProductList] = useState([])
-  useEffect(() => {
-    window
-    .fetch('api/avo')
-    .then((response) => response.json())
-    .then(({data,length}) => setProductList(data))
-  }, [])
+export const getStaticProps: GetStaticProps = async () => {
+  // TODO: Change this url
+  const url = "http://localhost:3000/"
+  const response = await fetch(`${url}api/avo`)
+  const { data: productList }: TAPIAvoResponse = await response.json()
+
+  return {
+    props: {
+      productList,
+    },
+  }
+}
+
+const HomePage = ({ productList }: {productList: TProduct[]}) => {
 
   return (
-    <div>
-      <h1>Hola mundo</h1>
-    </div>
+      <>
+         <ProductList products={productList} />
+      </>
   )
 }
 
-export default Home
+export default HomePage
+
