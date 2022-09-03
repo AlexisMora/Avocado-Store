@@ -18,9 +18,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
       <Grid item xs={12}>
         <Navbar />
       </Grid>
-      <Grid item xs={12}>
-        {children}
-      </Grid>
+      {children}
       <Grid item xs={12}>
         <footer>this is the footer</footer>
       </Grid>

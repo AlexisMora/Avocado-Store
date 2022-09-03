@@ -1,7 +1,6 @@
 import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
 import ProductCard from '@components/ProductCard.tsx/ProductCard'
+import { Grid } from '@mui/material'
 
 type ProductListProps = {
   products: TProduct[]
@@ -9,13 +8,22 @@ type ProductListProps = {
 
 const ProductList = ({ products }: ProductListProps) => {
   return (
-    <div>
+    <Grid
+    container
+    alignItems="center"
+    justifyContent="center"
+    style={{ minHeight: '100vw' }}
+    xs={12}
+    spacing={2}
+    >
       {
         products.map((product: TProduct) => (
-          <ProductCard product={product} />
+          <Grid key={product.id} xs={5}>
+            <ProductCard product={product} />
+          </Grid>
         ))
       }
-    </div>
+    </Grid>
   )
 }
 
