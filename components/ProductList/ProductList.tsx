@@ -7,7 +7,7 @@ type ProductListProps = {
   products: TProduct[]
 }
 
-const ProductList = ({ products}: ProductListProps) => {
+const ProductList = ({ products }: ProductListProps) => {
   return (
     <div>
       {

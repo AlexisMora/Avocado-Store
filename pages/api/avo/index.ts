@@ -1,4 +1,4 @@
-import { IncomingMessage, ServerResponse } from "http"
+import { IncomingMessage, ServerResponse } from 'http'
 import DB from '@database'
 const allAvos = async (request: IncomingMessage, response: ServerResponse) => {
   const db = new DB()
