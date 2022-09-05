@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '@components/ProductCard.tsx/ProductCard'
+import ProductCard from '@components/ProductCard/ProductCard'
 import { Grid } from '@mui/material'
 
 type ProductListProps = {

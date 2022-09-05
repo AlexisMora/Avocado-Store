@@ -1,15 +1,35 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import ProductDetail from '@components/ProductDetail/ProductDetail'
 
-const ProductItem = () => {
-  const {
-    query: { id }
-  } = useRouter()
+// TODO: change this url
+const url = 'http://localhost:3000/'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await fetch(`${url}api/avo`)
+  const { data }: TAPIAvoResponse = await response.json()
+
+  const paths = data.map(({ id }) => ({ params: { id } }))
+
+  return {
+    // Statically generate all paths
+    paths,
+    // Display 404 for everything else
+    fallback: false
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const response = await fetch(`${url}api/avo/${params?.id}`)
+  const product = await response.json()
+  return { props: { product } }
+}
+const ProductPage = ({ product }: {product: TProduct}) => {
   return (
-    <div>
-      <h1>pagina de producto: { id }</h1>
-    </div>
+    <>
+      {product && <ProductDetail product={product} />}
+    </>
   )
 }
 
-export default ProductItem
+export default ProductPage
